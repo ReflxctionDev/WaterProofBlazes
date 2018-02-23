@@ -16,7 +16,6 @@
 
 package net.reflxction.waterproofblazes;
 
-import org.bukkit.Material;
 import org.bukkit.entity.Blaze;
 import org.bukkit.entity.Entity;
 import org.bukkit.event.EventHandler;
@@ -46,16 +45,14 @@ public class BlazeListener implements Listener {
             if (entity instanceof Blaze) {
                 // An instance of the damaged blaze
                 Blaze b = (Blaze) event.getEntity();
-                // Check if the blaze's location is water or is flowing water
-                if (b.getLocation().getBlock().getType() == Material.WATER || b.getLocation().getBlock().getType() == Material.STATIONARY_WATER) {
+                // Check if the damage cause is drowning, which is apparently fired when a blaze gets damaged by water/rain
+                if (event.getCause() == EntityDamageEvent.DamageCause.DROWNING)
                     // Check if the blaze's world isn't in the disabled worlds
                     if (!m.getDisabledWorlds().contains(b.getWorld())) {
                         // Cancel the damage event
                         event.setCancelled(true);
                     }
-                }
             }
         }
     }
-
 }
