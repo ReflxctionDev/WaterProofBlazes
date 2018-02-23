@@ -1,0 +1,5 @@
+name: WaterProofBlazes
+version: ${project.version}
+main: net.reflxction.waterproofblazes.WaterProofBlazes
+authors: [Reflxction]
+description: A simple plugin which protects blazes from taking damage from water or rain
